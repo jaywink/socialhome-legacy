@@ -4,7 +4,7 @@ from django.db import models
 
 class Container(models.Model):
     name = models.CharField(max_length=100)
-    modified = models.DateTimeField('modified')
+    modified = models.DateTimeField('modified', auto_now=True)
     
     def __unicode__(self):
         return self.name

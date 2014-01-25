@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 class Container(models.Model):
     name = models.CharField(max_length=100)
     modified = models.DateTimeField('modified', auto_now=True)
@@ -22,7 +20,7 @@ class InfoContainer(Container):
         return self.name
 
 class InfoField(models.Model):
-    container = models.ForeignKey(InfoContainer)
+    container = models.ForeignKey(InfoContainer, related_name='fields')
     label = models.CharField(max_length=50)
     text = models.TextField()
     

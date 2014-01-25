@@ -1,0 +1,17 @@
+<h1>InfoContainers</h1>
+{% for container in info_list %}
+    <h2>{{ container.modified|date }} - {{ container.name }}</h2>
+    {% for field in container.fields.all %}
+        <h3>{{ field.label }}</h3>
+        <p>{{ field.text }}</p>
+    {% endfor %}
+{% empty %}
+    <p>No info containers yet.</p>
+{% endfor %}
+
+<h1>FeedContainers</h1>
+{% for container in feed_list %}
+    <h2>{{ container.modified|date }} - {{ container.name }}</h2>
+{% empty %}
+    <p>No feed containers yet.</p>
+{% endfor %}

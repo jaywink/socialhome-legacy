@@ -1,0 +1,19 @@
+body {
+    padding: 5px 15px;
+    background-color: #333333;
+}
+
+#content {
+    padding: 5px 15px;
+    margin: 15px;
+    background-color: #333333;
+    border-radius: 6px;
+}
+
+.item {
+    width: 25%;
+    padding: 5px;
+    margin: 15px;
+    background-color: #FFFFFF;
+    border-radius: 6px;
+}

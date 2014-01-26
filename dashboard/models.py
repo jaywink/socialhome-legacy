@@ -3,6 +3,7 @@ from django.db import models
 class Container(models.Model):
     name = models.CharField(max_length=100)
     modified = models.DateTimeField('modified', auto_now=True)
+    order = models.IntegerField('order', unique=True, null=True)
     
     def __unicode__(self):
         return self.name

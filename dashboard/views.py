@@ -11,6 +11,6 @@ class ContainerListView(ListView):
         context = super(ContainerListView, self).get_context_data(**kwargs)
         context['now'] = timezone.now()
         # tip from http://stackoverflow.com/a/12357483/1489738
-        context['feed_list'] = FeedContainer.objects.all()
-        context['info_list'] = InfoContainer.objects.all()
+        context['feed_list'] = FeedContainer.objects.order_by('order')
+        context['info_list'] = InfoContainer.objects.order_by('order')
         return context

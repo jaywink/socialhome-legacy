@@ -1,16 +1,12 @@
 from django.views.generic.list import ListView
 from django.utils import timezone
 
-from dashboard.models import Container, FeedContainer, InfoContainer
+from dashboard.models import Container
 
 class ContainerListView(ListView):
     
     model = Container
+    
+    def get_queryset(self):
+        return Container.objects.order_by('order')
 
-    def get_context_data(self, **kwargs):
-        context = super(ContainerListView, self).get_context_data(**kwargs)
-        context['now'] = timezone.now()
-        # tip from http://stackoverflow.com/a/12357483/1489738
-        context['feed_list'] = FeedContainer.objects.order_by('order')
-        context['info_list'] = InfoContainer.objects.order_by('order')
-        return context

@@ -1,14 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div id="container" class="js-masonry" data-masonry-options='{ "columnWidth": 500, "itemSelector": ".item" }'>
-        {% for container in info_list %}
+    <div id="masonry-container">
+        <div class="grid-sizer"></div>
+        {% for container in object_list %}
             <div class="item">
                 <h2 class="text-center">{{ container.name }}</h2>
-                {% for field in container.fields.all %}
-                    <h3>{{ field.label }}</h3>
-                    <p>{{ field.text }}</p>
-                {% endfor %}
+                <div class="container-box">
+                    {% if container.infocontainer %}
+                        {% for field in container.infocontainer.fields.all %}
+                            <h3>{{ field.label }}</h3>
+                            <p>{{ field.text }}</p>
+                        {% endfor %}
+                    {% elif container.feedcontainer %}
+                    {% elif container.widgetcontainer %}
+                        {{ container.widgetcontainer.code|safe }}
+                    {% elif container.iframecontainer %}
+                        <iframe src="{{ container.iframecontainer.url|safe }}" frameborder="0" width="100%" height="400px"></iframe>
+                    {% endif %}
+                </div>
             </div>
         {% empty %}
             <p>No info containers yet.</p>

@@ -14,6 +14,20 @@ class FeedContainer(Container):
     
     def __unicode__(self):
         return self.name
+        
+class WidgetContainer(Container):
+    code = models.TextField()
+    # TODO: included in model but not used yet
+    include_libs = models.CharField(max_length=50, null=True, blank=True)
+    
+    def __unicode__(self):
+        return self.name
+    
+class IFrameContainer(Container):
+    url = models.URLField()
+    
+    def __unicode__(self):
+        return self.name
     
 class InfoContainer(Container):
     

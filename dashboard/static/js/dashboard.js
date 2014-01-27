@@ -1,7 +1,8 @@
 $(document).ready(function() {
     var msnry = new Masonry("#masonry-container", {
         isInitLayout: false,
-        itemSelector: ".item"
+        itemSelector: ".item",
+        columnWidth: 380
     });
     msnry.layout();
     $(document).ajaxStop(function() {

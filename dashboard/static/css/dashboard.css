@@ -4,15 +4,13 @@ body {
 }
 
 #content {
-    padding: 5px 15px;
-    margin: 15px;
     background-color: #333333;
     border-radius: 6px;
 }
 
 .item {
+    width: 350px;
     padding: 15px;
-    width: 30%;
     margin: 15px;
     background-color: #FFFFFF;
     border-radius: 6px;

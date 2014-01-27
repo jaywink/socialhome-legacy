@@ -15,3 +15,8 @@ body {
     background-color: #FFFFFF;
     border-radius: 6px;
 }
+
+.box-image {
+    border-radius: 6px;
+    width: 100%;
+}

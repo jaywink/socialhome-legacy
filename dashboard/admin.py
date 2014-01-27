@@ -1,5 +1,5 @@
 from django.contrib import admin
-from dashboard.models import Container, FeedContainer, InfoContainer, InfoField, WidgetContainer, IFrameContainer
+from dashboard.models import Container, FeedContainer, InfoContainer, InfoField, WidgetContainer, IFrameContainer, ImageURLContainer
 
 # Register your models here.
 
@@ -18,3 +18,4 @@ admin.site.register(FeedContainer)
 admin.site.register(InfoContainer, InfoContainerAdmin)
 admin.site.register(WidgetContainer)
 admin.site.register(IFrameContainer)
+admin.site.register(ImageURLContainer)

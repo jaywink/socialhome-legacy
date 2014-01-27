@@ -1,5 +1,6 @@
 from django.views.generic.list import ListView
 from django.utils import timezone
+from django.conf import settings
 
 from dashboard.models import Container
 
@@ -9,4 +10,9 @@ class ContainerListView(ListView):
     
     def get_queryset(self):
         return Container.objects.order_by('order')
+        
+    def get_context_data(self, **kwargs):
+        context = super(ContainerListView, self).get_context_data(**kwargs)
+        context['SOCIALHOME_OWNER_NAME'] = settings.SOCIALHOME_OWNER_NAME
+        return context
 

@@ -8,8 +8,8 @@
                 <div class="container-box">
                     {% if container.infocontainer %}
                         {% for field in container.infocontainer.fields.all %}
-                            <h3>{{ field.label }}</h3>
-                            <p>{{ field.text }}</p>
+                            <h4>{{ field.label }}</h4>
+                            {{ field.text }}
                         {% endfor %}
                     {% elif container.feedcontainer %}
                     {% elif container.widgetcontainer %}

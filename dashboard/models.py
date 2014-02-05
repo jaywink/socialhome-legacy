@@ -1,4 +1,5 @@
 from django.db import models
+from aggregator.models import Feed
 
 class Container(models.Model):
     name = models.CharField(max_length=100)
@@ -12,6 +13,7 @@ class Container(models.Model):
 class FeedContainer(Container):
     external_url = models.URLField()
     refreshed = models.DateTimeField('last refresh')
+    aggregator = models.ForeignKey(Feed)
     
     def __unicode__(self):
         return self.name

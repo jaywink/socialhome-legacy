@@ -2,7 +2,7 @@ TIME_ZONE = 'Europe/Helsinki'
 
 SOCIALHOME_OWNER_NAME = 'Jason Robinson'
 
-DEBUG = True
+DEBUG = False
 
 DATABASES = {
     "default": {
@@ -25,5 +25,6 @@ ALLOWED_HOSTS = (
     "127.0.0.1",
 )
 
-SECRET_KEY = "CHANGE THIS"
-                                    
+## WARNING SET THIS TO SOMETHING LONG AND RANDOM!!
+#SECRET_KEY = "CHANGE THIS"
+

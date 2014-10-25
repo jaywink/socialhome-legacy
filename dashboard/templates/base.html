@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Socialhome Dashboard</title>
+    <title>{{ SOCIALHOME_TITLE }} - {{ SOCIALHOME_SUBTITLE }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
@@ -22,8 +22,8 @@
 <body>
     <div class="container">
         <div class="jumbotron">
-            <h1>{{ SOCIALHOME_OWNER_NAME }}</h1>
-            <p>Welcome to my Social Home!</p>
+            <h1>{{ SOCIALHOME_TITLE }}</h1>
+            <p>{{ SOCIALHOME_SUBTITLE }}</p>
         </div>
         <div id="content">
             {% block content %}{% endblock %}

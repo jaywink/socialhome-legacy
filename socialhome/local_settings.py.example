@@ -1,6 +1,7 @@
 TIME_ZONE = 'Europe/Helsinki'
 
-SOCIALHOME_OWNER_NAME = 'Jason Robinson'
+SOCIALHOME_TITLE = "Your Name"
+SOCIALHOME_SUBTITLE = "Welcome to my social home!"
 
 DEBUG = False
 TEMPLATE_DEBUG = False

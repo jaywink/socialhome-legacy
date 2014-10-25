@@ -4,6 +4,8 @@ Socialhome is a Django application that acts as a social homepage for a user. Th
 
 External site information will be synced as background jobs to minimize outgoing queries to sites.
 
+[See an example here](http://jasonrobinson.me).
+
 ## Tech stack
 
 * Built with [Django](http://djangoproject.com).

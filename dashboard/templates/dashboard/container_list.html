@@ -18,9 +18,9 @@
                         {{ container.code|safe }}
                     {% elif container.url %}
                         {% class_lower container as class_name %}
-                        {% if class_name == 'IFrameContainer' %}
+                        {% if class_name == 'iframecontainer' %}
                             <iframe src="{{ container.url|safe }}" frameborder="0" width="100%" height="400px"></iframe>
-                        {% elif class_name == 'ImageURLContainer' %}
+                        {% elif class_name == 'imageurlcontainer' %}
                             <div class="text-center">
                                 <img src="{{ container.url|safe }}" class="box-image" alt="{{ container.name }}">
                             </div>

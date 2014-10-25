@@ -3,6 +3,7 @@ TIME_ZONE = 'Europe/Helsinki'
 SOCIALHOME_OWNER_NAME = 'Jason Robinson'
 
 DEBUG = False
+TEMPLATE_DEBUG = False
 
 DATABASES = {
     "default": {

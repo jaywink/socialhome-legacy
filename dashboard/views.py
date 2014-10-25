@@ -14,5 +14,6 @@ class ContainerListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(ContainerListView, self).get_context_data(**kwargs)
         context['SOCIALHOME_OWNER_NAME'] = settings.SOCIALHOME_OWNER_NAME
+        context['containers'] = Container.objects.all().select_subclasses()
         return context
 

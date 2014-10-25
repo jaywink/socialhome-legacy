@@ -1,27 +1,30 @@
 {% extends "base.html" %}
+{% load dashboard_tags %}
 
 {% block content %}
     <div id="masonry-container">
-        {% for container in object_list %}
+        {% for container in containers %}
             <div class="item">
                 {% if container.show_name %}
                     <h2 class="text-center">{{ container.name }}</h2>
                 {% endif %}
                 <div class="container-box">
-                    {% if container.infocontainer %}
-                        {% for field in container.infocontainer.fields.all %}
+                    {% if container.fields %}
+                        {% for field in container.fields.all %}
                             <h4>{{ field.label }}</h4>
                             {{ field.text }}
                         {% endfor %}
-                    {% elif container.feedcontainer %}
-                    {% elif container.widgetcontainer %}
-                        {{ container.widgetcontainer.code|safe }}
-                    {% elif container.iframecontainer %}
-                        <iframe src="{{ container.iframecontainer.url|safe }}" frameborder="0" width="100%" height="400px"></iframe>
-                    {% elif container.imageurlcontainer %}
-                        <div class="text-center">
-                            <img src="{{ container.imageurlcontainer.url|safe }}" class="box-image" alt="{{ container.name }}">
-                        </div>
+                    {% elif container.code %}
+                        {{ container.code|safe }}
+                    {% elif container.url %}
+                        {% class_lower container as class_name %}
+                        {% if class_name == 'IFrameContainer' %}
+                            <iframe src="{{ container.url|safe }}" frameborder="0" width="100%" height="400px"></iframe>
+                        {% elif class_name == 'ImageURLContainer' %}
+                            <div class="text-center">
+                                <img src="{{ container.url|safe }}" class="box-image" alt="{{ container.name }}">
+                            </div>
+                        {% endif %}
                     {% endif %}
                 </div>
             </div>

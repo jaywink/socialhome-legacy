@@ -1,10 +1,16 @@
+# -*- coding: utf-8 -*-
 from django.db import models
+
+from model_utils.managers import InheritanceManager
+
 
 class Container(models.Model):
     name = models.CharField(max_length=100)
     modified = models.DateTimeField('modified', auto_now=True)
     order = models.IntegerField('order', unique=True, null=True)
     show_name = models.BooleanField(default=True)
+    
+    objects = InheritanceManager()
     
     def __unicode__(self):
         return self.name

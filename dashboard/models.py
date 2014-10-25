@@ -14,6 +14,10 @@ class Container(models.Model):
     
     def __unicode__(self):
         return self.name
+        
+    class Meta:
+        ordering = ["order"]
+
     
 class FeedContainer(Container):
     external_url = models.URLField()
@@ -21,6 +25,7 @@ class FeedContainer(Container):
     
     def __unicode__(self):
         return self.name
+
         
 class WidgetContainer(Container):
     code = models.TextField()
@@ -29,23 +34,27 @@ class WidgetContainer(Container):
     
     def __unicode__(self):
         return self.name
+
     
 class IFrameContainer(Container):
     url = models.URLField()
     
     def __unicode__(self):
         return self.name
+
         
 class ImageURLContainer(Container):
     url = models.URLField()
     
     def __unicode__(self):
         return self.name
+
     
 class InfoContainer(Container):
     
     def __unicode__(self):
         return self.name
+
 
 class InfoField(models.Model):
     container = models.ForeignKey(InfoContainer, related_name='fields')
@@ -54,6 +63,3 @@ class InfoField(models.Model):
     
     def __unicode__(self):
         return self.label
-    
-    
-    

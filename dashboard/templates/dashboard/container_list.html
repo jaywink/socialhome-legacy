@@ -12,7 +12,11 @@
                     {% if container.fields %}
                         {% for field in container.fields.all %}
                             <h4>{{ field.label }}</h4>
-                            {{ field.text|urlize }}
+                            {% if field.content_type == 'plain' %}
+                                {{ field.text|urlize }}
+                            {% elif field.content_type == 'html' %}
+                                {{ field.text|safe }}
+                            {% endif %}
                         {% endfor %}
                     {% elif container.code %}
                         {{ container.code|safe }}

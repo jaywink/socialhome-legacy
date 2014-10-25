@@ -9,7 +9,7 @@ class InfoFieldInline(admin.TabularInline):
     
 class InfoContainerAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None, {'fields': ['name', 'order']}),
+        (None, {'fields': ['name', 'order', 'show_name']}),
     ]
     inlines = [InfoFieldInline]
 

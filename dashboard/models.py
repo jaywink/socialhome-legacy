@@ -57,9 +57,15 @@ class InfoContainer(Container):
 
 
 class InfoField(models.Model):
+    CONTENT_TYPES = [
+        ("plain", "Plain text (no markup, urlize urls)"),
+        ("html", "HTML markup"),
+    ]
+    
     container = models.ForeignKey(InfoContainer, related_name='fields')
     label = models.CharField(max_length=50)
     text = models.TextField()
+    content_type = models.CharField(max_length=30, choices=CONTENT_TYPES, default='plain')
     
     def __unicode__(self):
         return self.label

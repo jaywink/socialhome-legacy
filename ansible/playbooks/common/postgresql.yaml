@@ -1,0 +1,12 @@
+---
+# PostgreSQL
+- name: Install PostgreSQL
+  apt: pkg={{ item }}
+  with_items:
+    - postgresql
+    - libpq-dev
+    - python-psycopg2
+- name: Create user
+  postgresql_user: name={{ db_user }} password={{ db_password }}
+- name: Create database
+  postgresql_db: name={{ db_name }} owner={{ db_user }}

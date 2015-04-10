@@ -1,0 +1,56 @@
+---
+- hosts: ucamar
+  remote_user: jaywink
+  sudo: yes
+  vars_files:
+    - config.yaml
+  tasks:
+    # postgresql
+    - include: common/postgresql.yaml
+    # dependencies
+    - include: dependencies/python.yaml
+    # system
+    - name: Socialhome user exists
+      user: name=socialhome
+    # application
+    - name: Get latest Socialhome code
+      git: accept_hostkey=yes dest=/home/socialhome/socialhome repo=https://github.com/jaywink/socialhome.git
+    - name: Install app requirements
+      pip: requirements=/home/socialhome/socialhome/requirements.txt virtualenv=/home/socialhome/venv
+    - name: Install Python support for PostgreSQL
+      pip: name=psycopg2 virtualenv=/home/socialhome/venv
+    - name: Create local settings
+      when: initialize is defined
+      template: dest=/home/socialhome/socialhome/socialhome/local_settings.py src=templates/socialhome/local_settings.py
+    - name: Make sure home directory is owned by user
+      file: path=/home/socialhome/socialhome owner=socialhome group=socialhome recurse=yes
+    - name: Make sure venv directory is owned by user
+      file: path=/home/socialhome/venv owner=socialhome group=socialhome recurse=yes
+    - name: Sync db
+      when: initialize is defined
+      django_manage: app_path=/home/socialhome/socialhome command=syncdb virtualenv=/home/socialhome/venv
+    - name: Migrate db
+      when: initialize is not defined
+      django_manage: app_path=/home/socialhome/socialhome command=migrate virtualenv=/home/socialhome/venv
+    - name: Collect statics
+      django_manage: app_path=/home/socialhome/socialhome command=collectstatic virtualenv=/home/socialhome/venv
+    # web server
+    - name: Apache configuration
+      template: dest=/etc/apache2/sites-available/socialhome.conf src=templates/socialhome/apache.conf
+    - name: Apache SSL cert
+      copy:
+          content: "{{ ssl_cert }}"
+          dest: /etc/ssl/certs/{{ hostname }}.crt
+    - name: Apache SSL key
+      copy:
+          content: "{{ ssl_key }}"
+          dest: /etc/ssl/private/{{ hostname }}.key
+    - name: Apache SSL chain
+      copy:
+          content: "{{ ssl_chain }}"
+          dest: /etc/ssl/certs/{{ hostname }}.chain.pem
+    - include: common/apache_modules.yaml
+    - name: Apache socialhome site
+      command: a2ensite socialhome
+    - name: Apache restart
+      service: name=apache2 state=restarted

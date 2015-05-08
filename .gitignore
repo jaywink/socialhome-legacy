@@ -3,3 +3,5 @@ local_settings.py
 db.sqlite3
 development.db
 static
+.idea/
+

@@ -1,0 +1,38 @@
+---
+# postgresql
+- include: common/postgresql.yaml
+# dependencies
+- include: dependencies/python.yaml
+# system
+- name: Socialhome user exists
+  user: name=socialhome
+# application
+- name: Get latest Socialhome code
+  git: accept_hostkey=yes dest=/home/socialhome/socialhome repo=https://github.com/jaywink/socialhome.git
+- name: Install app requirements
+  pip: requirements=/home/socialhome/socialhome/requirements.txt virtualenv=/home/socialhome/venv
+- name: Install Python support for PostgreSQL
+  pip: name=psycopg2 virtualenv=/home/socialhome/venv
+- name: Create local settings
+  template: dest=/home/socialhome/socialhome/socialhome/local_settings.py src=local_settings.py.j2 backup=yes
+- name: Make sure home directory is owned by user
+  file: path=/home/socialhome/socialhome owner=socialhome group=socialhome recurse=yes
+- name: Make sure venv directory is owned by user
+  file: path=/home/socialhome/venv owner=socialhome group=socialhome recurse=yes
+- name: Sync db
+  when: initialize is defined
+  django_manage: app_path=/home/socialhome/socialhome command=syncdb virtualenv=/home/socialhome/venv
+- name: Migrate db
+  when: initialize is not defined
+  django_manage: app_path=/home/socialhome/socialhome command=migrate virtualenv=/home/socialhome/venv
+- name: Collect statics
+  django_manage: app_path=/home/socialhome/socialhome command=collectstatic virtualenv=/home/socialhome/venv
+
+# web server
+- name: Apache configuration
+  template: dest=/etc/apache2/sites-available/socialhome.conf src=apache.conf backup=yes
+- include: common/apache_modules.yaml
+- name: Apache socialhome site
+  command: a2ensite socialhome
+- name: Apache restart
+  service: name=apache2 state=restarted

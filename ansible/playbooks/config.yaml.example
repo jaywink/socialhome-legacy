@@ -4,21 +4,10 @@ db_user: socialhome
 db_password: ***************
 db_host: localhost
 hostname: mysocialhome.me
-ssl_cert: |
-    -----BEGIN CERTIFICATE-----
-    MIIGojdfowjhefihiiiiiiiiiiiiiiiiiiiiiiiiiqwfqwqdqwkmionmjmodwwJJ
-    ...
-    0p+E+OzdV9ugka6drW3vwSIxO8mhwHGDwaB+p/RDfgWI40clKu8=
-    -----END CERTIFICATE-----
-ssl_key: |
-    -----BEGIN RSA PRIVATE KEY-----
-    MIIEpAIBAdfcmewiomoiwqeodiwqojdjwiojoxcjowjiqjxowqjOCJlYPPIbP1kG
-    ...
-    R0fGN9FlmmisBb6wrLX4RkRnB926g43pxJJv9gI4WCxQQF8MzSratw==
-    -----END RSA PRIVATE KEY-----
-ssl_chain: |
-    -----BEGIN CERTIFICATE-----
-    MIIFgregregrgregrerIHFxU9nqs/vzANBgkqhkiG9w0BAQsFADB9MQswCQYDVQQG
-    ...
-    gGgreggregtf0s+bA==
-    -----END CERTIFICATE-----
+
+#socialhome_secret_key: set this to a nice secret key and uncomment
+socialhome_title: My Socialhome
+socialhome_subtitle: "Subtitles are nice"
+
+letsencrypt_email: mail@example.com
+letsencrypt_domain: mysocialhome.me

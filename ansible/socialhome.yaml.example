@@ -1,0 +1,10 @@
+---
+- hosts: changeme
+  become: yes
+  become_user: root
+  vars_files:
+    - playbooks/config.yaml
+  tasks:
+    - include: playbooks/tasks.yaml
+  roles:
+    - letsencrypt

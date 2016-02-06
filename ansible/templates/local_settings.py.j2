@@ -1,7 +1,7 @@
 TIME_ZONE = 'Europe/Helsinki'
 
-SOCIALHOME_TITLE = "Socialhome"
-SOCIALHOME_SUBTITLE = "My home!"
+SOCIALHOME_TITLE = "{{ socialhome_title }}"
+SOCIALHOME_SUBTITLE = "{{ socialhome_subtitle }}"
 
 DEBUG = False
 TEMPLATE_DEBUG = False
@@ -27,4 +27,4 @@ ALLOWED_HOSTS = (
     "127.0.0.1", "{{ hostname }}",
 )
 
-#SECRET_KEY = "changeme"
+SECRET_KEY = "{{ socialhome_secret_key }}"
